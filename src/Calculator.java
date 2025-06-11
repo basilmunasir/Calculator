@@ -11,7 +11,7 @@ import javax.swing.SwingConstants;
 public class Calculator implements ActionListener
 {
     JFrame jf;
-    JLabel displayJLabel;
+    JLabel displayLabel;
     JButton clearButton,backspaceButton,percentageButton,divisionButton;
     JButton sevenButton,eightButton,nineButton,multiplicationButton;
     JButton fourButton,fiveButton,sixButton,additionButton;
@@ -24,14 +24,14 @@ public class Calculator implements ActionListener
         jf.setSize(500,650);
         jf.setLocation(400, 100);
 
-        displayJLabel = new JLabel("Munasir");
-        displayJLabel.setBounds(50, 50, 400, 80);
-        displayJLabel.setBackground(Color.gray);
-        displayJLabel.setOpaque(true);
-        displayJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        displayJLabel.setForeground(Color.white);
-        displayJLabel.setFont(new Font("Serif", Font.PLAIN, 40));
-        jf.add(displayJLabel);
+        displayLabel = new JLabel();
+        displayLabel.setBounds(50, 50, 400, 80);
+        displayLabel.setBackground(Color.gray);
+        displayLabel.setOpaque(true);
+        displayLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        displayLabel.setForeground(Color.white);
+        displayLabel.setFont(new Font("Serif", Font.PLAIN, 40));
+        jf.add(displayLabel);
 
 
     
@@ -191,8 +191,89 @@ public class Calculator implements ActionListener
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        
+    public void actionPerformed(ActionEvent e) 
+    {
+        if(e.getSource() == sevenButton)
+        {
+            displayLabel.setText("7");
+        }
+        else if(e.getSource() == eightButton)
+        {
+            displayLabel.setText("8");            
+        }
+        else if(e.getSource() == nineButton)
+        {
+            displayLabel.setText("9");
+        }
+        else if(e.getSource() == fourButton)
+        {
+            displayLabel.setText("4");
+        }
+        else if(e.getSource() == fiveButton)
+        {
+            displayLabel.setText("5");
+        }
+        else if(e.getSource() == sixButton)
+        {
+            displayLabel.setText("6");
+        }
+        else if(e.getSource() == oneButton)
+        {
+            displayLabel.setText("1");
+        }
+        else if(e.getSource() == twoButton)
+        {
+            displayLabel.setText("2");
+        }
+        else if(e.getSource() == threeButton)
+        {
+            displayLabel.setText("3");
+        }
+        else if(e.getSource() == doublezeroButton)
+        {
+            displayLabel.setText("00");
+        }
+        else if(e.getSource() == zeroButton)
+        {
+            displayLabel.setText("0");
+        }
+        else if(e.getSource() == dotButton)
+        {
+            displayLabel.setText(".");
+        }
+        else if(e.getSource() == clearButton)
+        {
+
+        }
+        else if(e.getSource() == backspaceButton)
+        {
+
+        }
+        else if(e.getSource() == percentageButton)
+        {
+            
+        }
+        else if(e.getSource() == divisionButton)
+        {
+            
+        }
+        else if(e.getSource() == multiplicationButton)
+        {
+            
+        }
+        else if(e.getSource() == additionButton)
+        {
+            
+        }
+        else if(e.getSource() == substractButton)
+        {
+            
+        }
+        else if(e.getSource() == equalButton)
+        {
+            
+        }
+         
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
     }
 }

@@ -17,6 +17,11 @@ public class Calculator implements ActionListener
     JButton fourButton,fiveButton,sixButton,additionButton;
     JButton oneButton,twoButton,threeButton,substractButton;
     JButton doublezeroButton,zeroButton,dotButton,equalButton;
+    
+    String oldValue;
+    float oldValueF;
+    float newValueF;
+    String actionClicked;
     boolean isOperatorClicked=false;
     public Calculator()
     {
@@ -364,6 +369,9 @@ public class Calculator implements ActionListener
         else if(e.getSource() == clearButton)
         {
             displayLabel.setText("");
+            oldValueF=0;
+            newValueF=0;
+            actionClicked="";
         }
         else if(e.getSource() == backspaceButton)
         {
@@ -384,6 +392,17 @@ public class Calculator implements ActionListener
         else if(e.getSource() == additionButton)
         {
             isOperatorClicked=true;
+            if (oldValue=="") 
+            {
+                oldValue=displayLabel.getText(); 
+                oldValueF=Float.parseFloat(oldValue);  
+            }
+            else
+            {
+                oldValue=displayLabel.getText();
+                oldValueF+=Float.parseFloat(oldValue);
+            }
+            displayLabel.setText("");
         }
         else if(e.getSource() == substractButton)
         {
@@ -391,7 +410,10 @@ public class Calculator implements ActionListener
         }
         else if(e.getSource() == equalButton)
         {
-            
+            String newValue=displayLabel.getText();
+            newValueF=Float.parseFloat(newValue);
+            newValueF+=oldValueF;
+            displayLabel.setText(newValueF+"");
         }
          
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");

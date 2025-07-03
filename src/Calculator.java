@@ -18,11 +18,12 @@ public class Calculator implements ActionListener
     JButton oneButton,twoButton,threeButton,substractButton;
     JButton doublezeroButton,zeroButton,dotButton,equalButton;
     
-    String oldValue;
-    float oldValueF;
-    float newValueF;
+    String oldValue="";
+    float oldValueF=0;
+    float newValueF=0;
     String actionClicked;
     boolean isOperatorClicked=false;
+    String flag="";
     public Calculator()
     {
         jf = new JFrame("Calculator");
@@ -369,9 +370,11 @@ public class Calculator implements ActionListener
         else if(e.getSource() == clearButton)
         {
             displayLabel.setText("");
+            oldValue="";
             oldValueF=0;
             newValueF=0;
             actionClicked="";
+            flag="";
         }
         else if(e.getSource() == backspaceButton)
         {
@@ -383,11 +386,35 @@ public class Calculator implements ActionListener
         }
         else if(e.getSource() == divisionButton)
         {
-            
+            isOperatorClicked=true;
+            if (oldValue=="") 
+            {
+                oldValue=displayLabel.getText(); 
+                oldValueF=Float.parseFloat(oldValue);  
+            }
+            else
+            {
+                oldValue=displayLabel.getText();
+                oldValueF/=Float.parseFloat(oldValue);
+            }
+            flag="division";
+            displayLabel.setText("");
         }
         else if(e.getSource() == multiplicationButton)
         {
-            
+            isOperatorClicked=true;
+            if(oldValue=="")
+            {
+                oldValue=displayLabel.getText();
+                oldValueF=Float.parseFloat(oldValue);
+            }
+            else
+            {
+                oldValue=displayLabel.getText();
+                oldValueF*=Float.parseFloat(oldValue);
+            }
+            flag="multiply";
+            displayLabel.setText("");
         }
         else if(e.getSource() == additionButton)
         {
@@ -402,18 +429,53 @@ public class Calculator implements ActionListener
                 oldValue=displayLabel.getText();
                 oldValueF+=Float.parseFloat(oldValue);
             }
+            flag="add";
             displayLabel.setText("");
         }
         else if(e.getSource() == substractButton)
         {
-            
+            isOperatorClicked=true;
+            if (oldValue=="") 
+            {
+                oldValue=displayLabel.getText(); 
+                oldValueF=Float.parseFloat(oldValue);  
+            }
+            else
+            {
+                oldValue=displayLabel.getText();
+                oldValueF-=Float.parseFloat(oldValue);
+            }
+            flag="subtract";
+            displayLabel.setText("");
         }
         else if(e.getSource() == equalButton)
         {
             String newValue=displayLabel.getText();
             newValueF=Float.parseFloat(newValue);
-            newValueF+=oldValueF;
-            displayLabel.setText(newValueF+"");
+
+            switch (flag) {
+                case "percentage":
+                    break;
+                case "division":
+                    newValueF=oldValueF/newValueF;
+                    displayLabel.setText(newValueF+" ");
+                    break;
+                case "multiply":
+                    newValueF*=oldValueF;
+                    displayLabel.setText(newValueF+" ");
+                    break;
+                case "add":
+                    newValueF+=oldValueF;
+                    displayLabel.setText(newValueF+" ");
+                    break;
+                case "subtract":
+                    newValueF=oldValueF-newValueF;
+                    displayLabel.setText(newValueF+" ");
+                    break;
+                default:
+                    displayLabel.setText("0");
+                    break;
+            }
         }
          
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
